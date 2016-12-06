@@ -1,0 +1,54 @@
+﻿
+@{
+    Layout = null;
+ 
+    
+}
+
+  <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                    <tr>
+                       
+                        <th>Tipo Documento</th>
+                        <th>No. Documento</th>
+                        <th >Concepto</th>
+						<th >Fecha</th>
+                        <th class="current-price">Cargo</th>
+                        <th class="numeric">Pago</th>
+                    </tr>
+                </thead>
+<tbody>
+@foreach (var item in ViewBag.Estados)
+{
+    
+        if (@item.TIPO_DOCUMENTO == "FACTURA" && @item.NO_ESTADO2 != "CANCELADO" || @item.TIPO_DOCUMENTO == "RECIBO" )
+        {
+     <tr>
+        
+        <td>@item.TIPO_DOCUMENTO</td>
+         <td>@item.NO_FACTURA @item.NO_RECIBO</td>
+       
+        <td>@item.Notas</td>
+       
+    
+
+        <td> @item.RefDate.Replace(@"06:00:00Z", "")</td>
+        <td> @item.CURRENCY @item.Cargo.ToString("0.##")</td>
+        <td> @item.CURRENCY @item.ABONO2.ToString("0.##")</td>
+    </tr>
+   
+            }
+        }
+
+</tbody>
+                <tfoot>
+                   <tr>
+                       
+                        <td colspan="3">SALDO TOTAL</td>
+                       <td></td> 
+                        <td>@*@ViewBag.TotalC.ToString("0.##")*@</td>
+                        <td>@ViewBag.moneda @ViewBag.TotalS.ToString("0.##")</td>
+                    </tr>
+                </tfoot>
+  </table>
+

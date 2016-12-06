@@ -1,0 +1,114 @@
+﻿@model IntranetRosul.Models.Local
+
+@{
+    Layout = "~/Views/Shared/_BacKOfficeCC.cshtml";
+
+
+}
+<!--main content start-->
+<section id="main-content" style="margin-left: 0px;">
+    <section class="wrapper site-min-height">
+        <div class="row">
+
+            <div class="showback">
+                <h3><i class="fa fa-angle-right"></i> Estado de Cuenta</h3>
+                <p>Nombre: @ViewBag.CardName </p>
+                @if (@ViewBag.locales.Count == 0 || @ViewBag.locales.Count == 1)
+                    {
+                        <p>Local: @ViewBag.Local</p>
+
+                     }else
+                        {
+                        <p>Local: @Html.DropDownList("local", (IEnumerable<SelectListItem>)ViewBag.locales, new { @id = "codigo", @class = "form-control" })</p>
+                        }
+
+
+            </div>
+            <div class="fechahoy"> @DateTime.Now.ToString()  </div>
+            <div class="row">
+
+
+                <div class="col-lg-12">
+
+                    <div class="col-lg-6">
+
+                       
+
+                       
+
+                    </div>
+                    </div>
+                    <div class="col-sm-6">
+                       
+                        <a href="javascript:window.print()" class="btn btn-warning">Imprimir</a>
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+        <section id="unseen">
+            <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                    <tr>
+
+                        <th>Tipo Documento</th>
+                        <th>No. Documento</th>
+                        <th>Concepto</th>
+                        <th>Fecha</th>
+                        <th class="current-price">Cargo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.Estados)
+                    {
+
+
+                        <tr>
+
+                            <td>@item.Tipo_Documento</td>
+                            <td>@item.NumAtCard</td>
+
+                            <td>@item.JrnlMemo</td>
+
+
+
+                            <td> @item.DocDate.Replace(@"06:00:00Z", "")</td>
+                            <td> @item.DocCur @item.DocTotal.ToString("0.##")</td>
+                        </tr>
+
+
+                    }
+
+                </tbody>
+                <tfoot>
+                    <tr>
+
+                        <td colspan="4">SALDO TOTAL</td>
+                 
+                     
+                        <td>@ViewBag.moneda @ViewBag.TotalP.ToString("0.##")</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div>Generacion de mora por dias de atraso</div>
+            <div class="row">
+                <div class='col-sm-8'>
+
+                </div>
+                <div class='col-sm-4'>
+                    <div class="">
+
+                        <span class="badge bg-inverse">Dias atrasados<span class="badge bg-dangerCC">@ViewBag.dias</span></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</section>

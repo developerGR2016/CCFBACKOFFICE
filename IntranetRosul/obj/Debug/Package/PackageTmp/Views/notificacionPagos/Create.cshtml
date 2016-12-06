@@ -1,0 +1,157 @@
+﻿@model IntranetRosul.Models.notificacionPagos
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_BackOfficeCC.cshtml";
+
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+    {
+        Text = "Cheque",
+        Value = "1"
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "Boleto de deposito",
+        Value = "2",
+        Selected = true
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "Trasferencia bancaria",
+        Value = "3"
+    });
+
+    List<SelectListItem> listItems2 = new List<SelectListItem>();
+    listItems2.Add(new SelectListItem
+    {
+        Text = "BANCO BAM",
+        Value = "BANCO BAM"
+    });
+    listItems2.Add(new SelectListItem
+    {
+        Text = "BANCO INDUSTRIAL",
+        Value = "BANCO INDUSTRIAL"
+    });
+    listItems2.Add(new SelectListItem
+    {
+        Text = "BANCO G&T CONTINENTAL",
+        Value = "BANCO G&t CONTIENTAL"
+    });
+    listItems2.Add(new SelectListItem
+    {
+        Text = "BANCO BANRUAL",
+        Value = "BANCO BANRURAL"
+    });
+
+    List<SelectListItem> listItems3 = new List<SelectListItem>();
+    listItems3.Add(new SelectListItem
+    {
+        Text = "QTZ",
+        Value = "1"
+    });
+    listItems3.Add(new SelectListItem
+    {
+        Text = "$",
+        Value = "2"
+    });
+}
+<!--main content start-->
+<section id="main-content" style="margin-left: 0px;">
+    <section class="wrapper site-min-height">
+    
+
+
+                <div class="showback">
+                    <h3><i class="fa fa-angle-right"></i> Notificacion de Pagos</h3>
+                </div>
+                <div class="fechahoy"> @DateTime.Now.ToString() </div>
+                <div class="row">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="col-lg-12">
+                            <div class="col-lg-2">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                @Html.LabelFor(model => model.factura, htmlAttributes: new { @class = "control-label " })
+
+                                @Html.EditorFor(model => model.factura, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.factura, new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-2">
+                                @Html.LabelFor(model => model.monedaFactura, htmlAttributes: new { @class = "control-label" })
+
+                                @Html.DropDownListFor(model => model.monedaFactura, listItems3, null, new { @class = "form-control" })
+
+
+                            </div>
+                            <div class="col-lg-2">
+                                
+                                @Html.LabelFor(model => model.monto, htmlAttributes: new { @class = "control-label " })
+                                @Html.EditorFor(model => model.monto, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.monto, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-8">
+                            </div>
+                            </div>
+                            <div class="form-panel col-lg-12">
+                                <div class="col-lg-2">
+
+                                    @Html.LabelFor(model => model.documento, htmlAttributes: new { @class = "control-label" })
+
+                                    @Html.EditorFor(model => model.documento, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.documento, "", new { @class = "text-danger" })
+
+                                </div>
+          
+                                <div class="col-lg-2">
+
+                                    @Html.LabelFor(model => model.tipoDocumento, htmlAttributes: new { @class = "control-label" })
+
+                                    @Html.DropDownListFor(model => model.tipoDocumento, listItems, "-- Selecione tipo de documento --", new { @class = "form-control" })
+                                    @*@Html.EditorFor(model => model.tipoDocumento, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.tipoDocumento, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="col-lg-2">
+                                    @Html.LabelFor(model => model.banco, htmlAttributes: new { @class = "control-label" })<br />
+
+                                    @Html.DropDownList("cuentas", (IEnumerable<SelectListItem> )ViewBag.cuentas, new { @id = "codcuenta", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.banco, "", new { @class = "text-danger" })
+
+</div>
+
+                                <div class="col-lg-2">
+                                    @Html.LabelFor(model => model.monedaPgo, htmlAttributes: new { @class = "control-label" })
+
+                                    @Html.DropDownListFor(model => model.monedaPgo, listItems3, null, new { @class = "form-control" })
+
+
+                                </div>
+                                <div class="col-lg-2">
+                                    @Html.LabelFor(model => model.montoNotificar, htmlAttributes: new { @class = "control-label" })<br />
+                                    @Html.ValidationMessageFor(model => model.montoNotificar, "", new { @class = "text-danger" })
+
+                                    @Html.EditorFor(model => model.montoNotificar, new { htmlAttributes = new { @class = "form-control" } }) <br />
+                                    @Html.ValidationMessageFor(model => model.montoNotificar, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-4">
+                                </div>
+
+
+                                <div class="col-lg-12">
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-4"></div>
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-4"><input type="submit" value="Guardar" class="btn btn-success" /> </div>
+                                </div>
+
+                            </div>          }
+
+                                    </div>
+
+</section>
+</section>

@@ -1,0 +1,173 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Backend.cshtml";
+
+
+}
+
+
+<!-- **********************************************************************************************************************************************************
+    MAIN CONTENT
+    *********************************************************************************************************************************************************** -->
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <h3><i class="fa fa-angle-right"></i> Reporte de Marcajes</h3>
+        <div class="row mt">
+            <div class="col-lg-12">
+                <p>Buscar en el mapa por los filtros al colaborador, por fecha.</p>
+            </div>
+
+            <div class="form-panel col-lg-12">
+                <div class="col-lg-3">
+                    @Html.DropDownList("Colaboradores", (IEnumerable<SelectListItem>)ViewBag.Colaborador, new { @id = "codColaborador", @class = "form-control" })
+                </div>
+                <div class="col-lg-3">
+                    @Html.TextBox("Fecha Inicial", null, new { @id = "fechaIni", @class = "datetimepicker1 form-control", placeholder = "Fecha desde.." })
+                </div>
+                <div class="col-lg-3">
+                    @Html.TextBox("Fecha Final", null, new { @id = "fechaFin", @class = "datetimepicker1 form-control", placeholder = "..Fecha hasta" })
+                </div>
+
+                <button class="btn btn-primary" id="btn_buscar">BUSCAR</button>
+
+
+
+                <div class="form-panel tablaResultados">
+                    <table class="table table-bordered table-striped table-condensed">
+                        <thead>
+                            <tr>
+                                <th>PROYECTO</th>
+                                <th>FECHA</th>
+                                <th>HORA ENTRADA</th>
+                                <th>HORA SALIDA</th>
+
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+            <link rel="stylesheet" type="text/css" href="/Content/css/mapas.css">
+            <div id="map"></div>
+       
+    </div>
+
+        <script>
+            function initMap() {
+                // Configuración inicial centrando el mapa 
+                var latitud = 14.522242;
+                var longitud = -90.564235;
+                    var zoom_inicial = 18;
+                    var myLatLng = { lat: latitud, lng: longitud };
+                // Create a map object and specify the DOM element for display.
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                                  center: myLatLng,
+                                  scrollwheel: false,
+                                  zoom: zoom_inicial
+                    });
+
+                    var colaboradoresNoReportados = [
+                                      ['Hora 1', 14.521556, -90.5624, 4],
+                                      ['Hora 2', 14.520652, -90.564567, 5]
+                    ];
+                    var colaboradoresReportados = [
+                                             ['Hora 1', 14.520777, -90.566949, 4],
+                                             ['Hora 2', 14.523187, -90.564857, 5]
+                    ];
+                    var colaboradoresReportadosTarde = [
+                                             ['Hora 1', 14.519541, -90.56446, 4],
+                                             ['Hora 2', 14.521629, -90.564407, 5]
+                    ];
+
+                    setMarkers(map, colaboradoresReportados, 'personaEntiempo');
+                    setMarkers(map, colaboradoresReportadosTarde, 'personaEnDestiempo');
+                    setMarkers(map, colaboradoresNoReportados, 'personaNoReportada');
+
+
+                   
+
+
+            }
+
+                // lectura de marcas
+
+                   
+
+                    function setMarkers(map,datos,imagen) {
+                        var image = {
+                            url: '/Content/img/iconos/'+imagen+'.png',
+                            size: new google.maps.Size(25, 25),
+                            // The origin for this image is (0, 0).
+                            origin: new google.maps.Point(0, 0),
+                            // The anchor for this image is the base of the flagpole at (0, 32).
+                            anchor: new google.maps.Point(0, 25)
+                        }
+
+                        var shape = {
+                            coords: [1, 1, 1, 20, 18, 20, 18, 1],
+                            type: 'poly'
+                        }
+
+                        for (var i = 0; i < datos.length; i++) {
+                            var colab = datos[i];
+                            var marker = new google.maps.Marker({
+                                position: { lat: colab[1], lng: colab[2] },
+                                map: map,
+                                draggable: true,
+                                icon: image,
+                                shape: shape,
+                                title: colab[0],
+                                zIndex: colab[3],
+                                animation: google.maps.Animation.DROP,
+                                
+                            });
+
+                                var contentString = '<div id="content">' +
+                                                     '<div id="siteNotice">' +
+                                                     '</div>' +
+                                                     '<h1 id="firstHeading" class="firstHeading">' + colab[0]  + '</h1>' +
+                                                     '<div id="bodyContent">' +
+                                                     '<p>Attribution: Reporte, ' + colab[3] +
+                                                     '(Ultimo marcaje Septiembre 19, 2016).</p>' +
+                                                     '</div>' +
+                                                     '</div>';
+
+                            var infowindow = new google.maps.InfoWindow({
+                                content: contentString
+                            });
+
+
+                         
+                        }
+                        marker.addListener('click', toggleBounce);
+                        function toggleBounce() {
+                            if (marker.getAnimation() !== null) {
+                                marker.setAnimation(null);
+                            } else {
+                                marker.setAnimation(google.maps.Animation.BOUNCE);
+                            }
+
+                        }
+                    };
+
+            /*
+                    
+            
+            */
+
+                   
+
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAigvhxnO7ZCIqNsW6xVpm9sdYO2wSCkYQ&callback=initMap"
+                async defer></script>
+
+      
+          
+              
+           
+       
+    </section><! --/wrapper -->
+</section><!-- /MAIN CONTENT -->

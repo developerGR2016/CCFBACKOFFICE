@@ -1,0 +1,83 @@
+﻿@model IntranetRosul.Models.Opcion
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Backend.cshtml";
+}
+
+<!-- **********************************************************************************************************************************************************
+    MAIN CONTENT
+    *********************************************************************************************************************************************************** -->
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <h3><i class="fa fa-angle-right"></i>MANTENIMIENTO > OPCIONES DE MENU - DETALLES</h3>
+
+        <div>
+            <h4>Opcion</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Menus.Nombre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Menus.Nombre)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Nombre)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Descripcion)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Path)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Path)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Orden)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Orden)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nivel)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Nivel)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.OpcionPadreId)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.OpcionPadreId)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+</section>
+</section>

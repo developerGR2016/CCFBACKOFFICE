@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "DISPONIBLE EN BODEGAS - GRUPO ROSUL";
+    Layout = "~/Views/Shared/_Backend.cshtml";
+}
+
+<!-- **********************************************************************************************************************************************************
+    MAIN CONTENT
+    *********************************************************************************************************************************************************** -->
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <h3><i class="fa fa-angle-right"></i>MATERIAL DISPONIBLE EN BODEGAS</h3>
+        <div class="row mt">
+            <div class="col-lg-12">
+                <p></p>
+            </div>
+
+            <div class="form-panel col-lg-12">
+                <div class="col-lg-3">
+                    @*@Html.DropDownList("Colaboradores", (IEnumerable<SelectListItem>)ViewBag.Colaborador, new { @id = "codColaborador", @class = "form-control" })*@
+                </div>
+                <div class="col-lg-3">
+                    @*@Html.TextBox("Fecha Inicial", null, new { @id = "fechaIni", @class = "datetimepicker1 form-control", placeholder = "Fecha desde.." })*@
+                </div>@*<a href="javascript:window.print()" class="btn btn-warning">Imprimir</a>*@
+                <div class="col-lg-3">
+                    @*@Html.TextBox("Fecha Final", null, new { @id = "fechaFin", @class = "datetimepicker1 form-control", placeholder = "..Fecha hasta" })*@
+                </div>
+
+
+ 
+
+            
+
+                <div class="form-panel tablaResultados">
+                    <table id="resultados" class="table table-bordered table-striped table-condensed cf display" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>COD PROYECTO</th>
+                                <th>PROYECTO</th>
+                                <th>COD BODEGA</th>
+                                <th>BODEGA</th>
+                                @*<th>MATERIAL</th>*@
+                                @*<th>COD_SUBFAMILIA</th>*@
+                                @*<th>COD_CUENTA</th>
+                                <th>COD_UNIDAD</th>
+                                <th>CAN_INICIAL</th>*@
+                                <th>DES_DETALLE</th>
+                                @*<th>FEC_INGRESO</th>
+                                <th>CAN_TOMA_FISICA</th>
+                                <th>CAN_MINIMO</th>
+                                <th>CAN_MAXIMO</th>*@
+                                <th>CANTIDAD ACTUAL</th>
+                                <th>MON_DETALLE</th>
+
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+
+                           @foreach (var item in ViewBag.Materiales)
+                           {
+
+                                <tr>
+                                    <td>@*@item.COD_PROYECTO*@</td>
+                                    <td>(@item.COD_PROYECTO) @item.DES_PROYECTO</td>
+                                    <td>@item.COD_BODEGA</td>
+                                    <td>(@item.COD_BODEGA) @item.DES_BODEGA</td>
+                                    <td>(@item.COD_DETALLE) @item.DES_DETALLE</td>
+                                    <td>@Convert.ToDecimal(@item.CAN_ACTUAL).ToString("#,##0.00")</td>
+                                    <td>@Convert.ToDecimal(@item.MON_DETALLE).ToString("#,##0.00")</td>
+                                </tr>
+                                        }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    
+</section>
+    </section>
+

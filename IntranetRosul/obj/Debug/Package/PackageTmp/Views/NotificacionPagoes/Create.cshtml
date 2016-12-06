@@ -1,0 +1,139 @@
+﻿@model IntranetRosul.Models.NotificacionPago
+
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_BackOfficeCC.cshtml";
+
+    List<SelectListItem> listItems3 = new List<SelectListItem>
+    ();
+    listItems3.Add(new SelectListItem
+    {
+    Text = "QTZ",
+    Value = "QTZ"
+    });
+    listItems3.Add(new SelectListItem
+    {
+    Text = "$",
+    Value = "$"
+    });
+
+    List<SelectListItem>
+        listItems = new List<SelectListItem>();
+            listItems.Add(new SelectListItem
+            {
+            Text = "Boleta de depósito",
+            Value = "Boleta de depósito",
+            });
+            listItems.Add(new SelectListItem
+            {
+            Text = "Transferencia bancaria",
+            Value = "Transferencia bancaria"
+            });
+            }
+            <section id="main-content" style="margin-left: 0px;">
+                <section class="wrapper site-min-height">
+
+
+
+                    <div class="showback">
+                        <h3><i class="fa fa-angle-right"></i> Notificación de Pagos</h3>
+              
+                    </div>
+                    <div class="fechahoy"> @DateTime.Now.ToString() </div>
+                    <div class="row">
+
+                        @using (Html.BeginForm())
+                        {
+                        @Html.AntiForgeryToken()
+
+                        <div class="col-lg-12">
+                            <div class="col-lg-2">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.LabelFor(model => model.factura, htmlAttributes: new { @class = "control-label " })
+                                @Html.DropDownList("factura", (IEnumerable<SelectListItem>)ViewBag.facturasc, "-- Selecione Factura --", new { @id = "codfacturas", @class = "form-control" })
+
+                            </div>
+
+
+                            <div class="col-lg-2">
+
+                                @Html.LabelFor(model => model.montoSaldo, htmlAttributes: new { @class = "control-label " })
+                                @Html.ValidationMessageFor(model => model.montoSaldo, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.montoSaldo, new { htmlAttributes = new { @class = "form-control" } })
+
+                              
+                            </div>
+
+                            <div class="col-lg-2">
+                                @*@Html.LabelFor(model => model.monedaF, htmlAttributes: new { @class = "control-label " })
+                                @Html.DropDownListFor(model => model.monedaF, listItems3, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.monedaF, "", new { @class = "text-danger" })*@
+
+
+                            </div>
+
+                            <div class="col-lg-8">
+                            </div>
+                        </div>
+
+                        <div class="form-panel col-lg-12">
+                            Ingresar Documento de Depósito, número de cuenta donde aplico el abono y el monto correspodiente.
+                        </div>
+                            <div class="form-panel col-lg-12">
+                                <div class="col-lg-2">
+                                    @Html.LabelFor(model => model.documento, htmlAttributes: new { @class = "control-label " })
+
+                                    @Html.EditorFor(model => model.documento, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.documento, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-lg-2">
+                                    @Html.LabelFor(model => model.tipoDeposito, htmlAttributes: new { @class = "control-label " })
+
+                                    @Html.DropDownListFor(model => model.tipoDeposito, listItems, "-- Selecione tipo de documento --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.tipoDeposito, "", new { @class = "text-danger" })
+                                </div>
+
+
+
+                                <div class="col-lg-2">
+
+                                    @Html.LabelFor(model => model.cuentaBancaria, htmlAttributes: new { @class = "control-label " })
+
+                                    @Html.DropDownList("cuentaBancaria", (IEnumerable<SelectListItem>
+                                    )ViewBag.cuentasb, new { @id = "codcuentas", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.cuentaBancaria, "", new { @class = "text-danger" })
+                                </div>
+
+
+
+                                <div class="col-lg-2">
+                                    @Html.LabelFor(model => model.monedaR, htmlAttributes: new { @class = "control-label " })
+
+                                    @Html.DropDownListFor(model => model.monedaR, listItems3, null, new { @class = "form-control" })@Html.ValidationMessageFor(model => model.monedaR, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="col-lg-2">
+                                    @Html.LabelFor(model => model.montoD, htmlAttributes: new { @class = "control-label " })
+
+                                    @Html.EditorFor(model => model.montoD, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.montoD, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-4">
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-4"></div>
+                                    <div class="col-lg-4"></div>
+                                    <input type="submit" value="Guardar" class="btn btn-default" />
+                                </div>
+                            </div>
+
+
+                        }
+
+
+                </section>
+            </section>
+                             

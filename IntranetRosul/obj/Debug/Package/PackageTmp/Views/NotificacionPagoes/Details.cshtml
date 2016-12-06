@@ -1,0 +1,83 @@
+﻿@model IntranetRosul.Models.NotificacionPago
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_BackOfficeCC.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NotificacionPago</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.factura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.factura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.monedaF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.monedaF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.montoSaldo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.montoSaldo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.documento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.documento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoDeposito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoDeposito)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cuentaBancaria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cuentaBancaria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.monedaR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.monedaR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.montoD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.montoD)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

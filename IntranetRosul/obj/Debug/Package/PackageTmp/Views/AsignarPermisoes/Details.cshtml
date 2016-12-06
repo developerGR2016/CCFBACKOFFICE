@@ -1,0 +1,51 @@
+﻿@model IntranetRosul.Models.AsignarPermiso
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Backend.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AsignarPermiso</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ARoles.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ARoles.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.permisos.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.permisos.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sistemas.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sistemas.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

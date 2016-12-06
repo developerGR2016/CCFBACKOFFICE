@@ -1,0 +1,33 @@
+﻿
+
+<ul class="sidebar-menu" id="nav-accordion">
+
+    @*<p class="centered"><a href="profile.html"><img src="/Content/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+        <h6 class="centered">@Session["Usuario"]  </h6>*@
+
+    <li class="mt">
+        <a href="@Url.Action("Index", "home")" class="active">
+            <i class="fa fa-dashboard"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+    <li class="sub-menu">
+        <a href="javascript:;">
+            <i class="fa fa-desktop"></i>
+            <span>Reportes</span>
+        </a>
+        <ul class="sub">
+            <li>@Html.ActionLink("Marcaje", "index", "marcaje", null, new { @class = "" })</li>
+            <li>@Html.ActionLink("Bodegas", "index", "bodega", null, new { @class = "" })</li>
+            <li>@Html.ActionLink("Escritura vrs Proyección", "index", "juridico", null, new { @class = "" })</li>
+        </ul>
+
+    </li>
+
+
+
+
+
+</ul>
+<!-- sidebar menu end-->

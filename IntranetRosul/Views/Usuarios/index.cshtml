@@ -1,0 +1,54 @@
+﻿@model List<IntranetRosul.Models.ApplicationUser>
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_Backend.cshtml";
+}
+
+<!-- **********************************************************************************************************************************************************
+    MAIN CONTENT
+    *********************************************************************************************************************************************************** -->
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <h3><i class="fa fa-angle-right"></i>MANTENIMIENTO > USUARIOS</h3>
+        <p>
+            @Html.ActionLink("Crear usuario", "../Account/Register",null, new { @class = "btn btn-success" })
+        </p>
+        <table class="table table-bordered table-striped table-condensed">
+            <thead>
+                <tr>
+                    <th>Codigo Empleado</th>
+                    <th>Usuario</th>
+                    <th>Nombres completos</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var usuario in Model)
+            {
+                    <tr>
+                        <td>
+                            @usuario.cod_empleado
+                        </td>
+                        <td>
+                            @usuario.UserName
+                        </td>
+                        <td>
+                            @usuario.Primer_Nombre @usuario.Segundo_Nombre @usuario.Primer_Apellido  @usuario.Segundo_Apellido
+                        </td>
+                        <td>
+                            @usuario.Email
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Sistema", "../AsignarSistemaUsuarios/Create", new { UserName=usuario.UserName}, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-warning" }) 
+                            @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</section></section>

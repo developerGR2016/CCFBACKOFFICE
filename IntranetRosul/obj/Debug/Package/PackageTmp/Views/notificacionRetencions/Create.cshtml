@@ -1,0 +1,114 @@
+﻿@model IntranetRosul.Models.notificacionRetencion
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_BackOfficeCC.cshtml";
+
+    List<SelectListItem>
+    listItems3 = new List<SelectListItem>
+    ();
+    listItems3.Add(new SelectListItem
+    {
+        Text = "RETENCIÓN DE IVA",
+        Value = "RETENCIÓN DE IVA",
+    });
+
+
+    List<SelectListItem>
+        listItems = new List<SelectListItem>
+            ();
+    listItems.Add(new SelectListItem
+    {
+        Text = "RETENCIÓN IVA",
+        Value = "RETENCIÓN IVA",
+    });
+
+}
+}
+<section id="main-content" style="margin-left: 0px;">
+    <section class="wrapper site-min-height">
+
+        @using (Html.BeginForm())
+            {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Notificación Retención</h4>
+           
+            </div>
+                <div class="fechahoy"> @DateTime.Now.ToString() </div>
+      
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-lg-2">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                    @Html.LabelFor(model => model.factura, htmlAttributes: new { @class = "control-label" })
+
+                                    @Html.DropDownList("factura", (IEnumerable<SelectListItem>)ViewBag.facturasc, "-- Selecione Factura --", new { @id = "codfacturas", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.factura, "", new { @class = "text-danger" })
+                                </div>
+                                <input id="codigo" type="hidden" value=@ViewData["CodeCard"] />
+                                <div class="col-lg-2">
+
+                                    @Html.LabelFor(model => model.montoF, htmlAttributes: new { @class = "control-label " })
+                                    @Html.EditorFor(model => model.montoF, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.montoF, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="col-lg-2">
+
+                                    @Html.LabelFor(model => model.tipo, htmlAttributes: new { @class = "control-label " })
+                                    @Html.DropDownListFor(model => model.tipo, listItems3, null, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.tipo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class=" form-panel col-lg-12">
+                                Ingrese los datos de la retención asociada a su factura.
+                            </div>  
+                                <div class="col-lg-12">
+                                    
+                                    <div class="col-lg-4">
+
+                                        @Html.LabelFor(model => model.noDoc, htmlAttributes: new { @class = "control-label " })
+
+                                        @Html.EditorFor(model => model.noDoc, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.noDoc, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                    <div class="col-lg-4">
+                                        @Html.LabelFor(model => model.montoR, htmlAttributes: new { @class = "control-label " })
+
+                                        @Html.EditorFor(model => model.montoR, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.montoR, "", new { @class = "text-danger" })
+
+                                    </div>
+                                    <div class="col-lg-4">
+
+                                        <input type="file" name="FileUpload1" id="fileUpload" /><br />
+                                        <input id="btnUploadFile" type="button" value="Subir archivo" />
+
+                                        @Html.EditorFor(model => model.path, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.path, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-lg-10">
+                                </div>
+                                <div class="col-lg-4">
+                                    <input type="submit" id="crear" value="Guardar" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                      
+
+        }
+
+        <div>
+
+        </div>
+</section>
+</section>
